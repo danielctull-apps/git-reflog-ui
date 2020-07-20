@@ -21,7 +21,15 @@ struct ReflogView: View {
     }
 
     var body: some View {
-        List(reflog, rowContent: ItemView.init)
+        List {
+            Color.clear
+                .frame(width: 0, height: 0)
+                .padding(.top)
+            ForEach(reflog, content: ItemView.init)
+            Color.clear
+                .frame(width: 0, height: 0)
+                .padding(.bottom)
+        }
     }
 }
 
@@ -43,6 +51,7 @@ struct ItemView: View {
         .background(RoundedRectangle(cornerRadius: 5).stroke(lineWidth: 4).foregroundColor(item.kind.backgroundColor))
         .clipShape(RoundedRectangle(cornerRadius: 5))
         .lineLimit(1)
+        .padding(.horizontal)
     }
 }
 

@@ -31,8 +31,6 @@ final class AppDelegate<Content: View>: NSObject, NSApplicationDelegate, NSWindo
         window?.contentView = NSHostingView(rootView: content)
         window?.makeKeyAndOrderFront(nil)
         window?.delegate = self
-        window?.titleVisibility = .hidden
-        window?.titlebarAppearsTransparent = true
         window?.toolbar?.isVisible = true
 
         NSApp.activate(ignoringOtherApps: true)

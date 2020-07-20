@@ -15,7 +15,6 @@ let delegate = AppDelegate {
         Color.white
             .edgesIgnoringSafeArea(.all)
         try! ReflogView(repository: repository)
-            .padding()
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
 }
