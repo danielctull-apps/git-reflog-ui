@@ -78,6 +78,7 @@ extension Reflog.Item {
     enum Kind: String, CaseIterable {
         case pull = "pull"
         case commit = "commit"
+        case clone = "clone"
         case checkout = "checkout"
         case reset = "reset"
         case rebase = "rebase"
@@ -91,6 +92,7 @@ extension Reflog.Item {
             switch self {
             case .pull: return .white
             case .commit: return .black
+            case .clone: return .white
             case .checkout: return .black
             case .reset: return .white
             case .rebase: return .white
@@ -104,6 +106,7 @@ extension Reflog.Item {
             switch self {
             case .pull: return .pink
             case .commit: return .green
+            case .clone: return .gray
             case .checkout: return .blue
             case .reset: return .red
             case .rebase: return .purple
@@ -118,6 +121,7 @@ extension Reflog.Item {
             case .pull: return 5
             case .commit: return 8
             case .checkout: return 10
+            case .clone: return 7
             case .reset: return 7
             case .rebase: return 7
             case .cherrypick: return 13
