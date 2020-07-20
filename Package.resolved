@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "GitKit",
+        "repositoryURL": "https://github.com/danielctull/GitKit",
+        "state": {
+          "branch": "main",
+          "revision": "0695c0f44bd51d26f3edb2b9f5811c1c14caa287",
+          "version": null
+        }
+      },
+      {
+        "package": "Tagged",
+        "repositoryURL": "https://github.com/pointfreeco/swift-tagged",
+        "state": {
+          "branch": null,
+          "revision": "592e1eb4255c571ebffc29955011e352217501b4",
+          "version": "0.5.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
