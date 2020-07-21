@@ -17,10 +17,9 @@ struct ReflogItemView: View {
             .font(.system(size: 17, weight: .regular, design: .default))
             Spacer(minLength: 0)
         }
-        .background(RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 4).foregroundColor(item.action.backgroundColor))
+        .background(RoundedRectangle(cornerRadius: 8).strokeBorder(item.action.backgroundColor, lineWidth: 2))
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .lineLimit(1)
-        .padding(.horizontal)
     }
 }
 

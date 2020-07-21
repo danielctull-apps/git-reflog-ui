@@ -27,6 +27,10 @@ extension Reflog.Item.Action {
     static let reset = Self(rawValue: "reset")
 }
 
+extension Reflog.Item.Action: Identifiable {
+    var id: String { rawValue }
+}
+
 extension Reflog.Item.Action: CustomStringConvertible {
     var description: String { rawValue }
 }
