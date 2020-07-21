@@ -20,12 +20,16 @@ struct ReflogView: View {
     }
 
     var body: some View {
-        VStack {
-            Space(length: 0)
+        VStack(spacing: 0) {
             ActionPicker(selection: $actions)
+                .padding(.vertical)
+            Divider()
             List(filteredItems) { item in
                 ReflogItemView(item: item)
             }
+            Divider()
+            Text("showing \(filteredItems.count) of \(reflog.count) reflog items")
+                .padding()
         }
     }
 }
