@@ -48,8 +48,8 @@ struct ItemView: View {
             .font(.system(size: 17, weight: .regular, design: .default))
             Spacer(minLength: 0)
         }
-        .background(RoundedRectangle(cornerRadius: 5).stroke(lineWidth: 4).foregroundColor(item.kind.backgroundColor))
-        .clipShape(RoundedRectangle(cornerRadius: 5))
+        .background(RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 4).foregroundColor(item.kind.backgroundColor))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
         .lineLimit(1)
         .padding(.horizontal)
     }
