@@ -4,19 +4,19 @@ import SwiftUI
 
 extension Reflog.Item {
 
-    struct Kind: Equatable, Hashable {
+    struct Action: Equatable, Hashable {
         fileprivate let rawValue: String
     }
 
-    var kind: Kind {
-        for kind in Kind.allCases {
+    var action: Action {
+        for kind in Action.allCases {
             if message.hasPrefix(kind.rawValue) { return kind }
         }
-        return Kind(rawValue: "unknown")
+        return Action(rawValue: "unknown")
     }
 }
 
-extension Reflog.Item.Kind {
+extension Reflog.Item.Action {
     static let checkout = Self(rawValue: "checkout")
     static let cherrypick = Self(rawValue: "cherry-pick")
     static let clone = Self(rawValue: "clone")
@@ -27,12 +27,12 @@ extension Reflog.Item.Kind {
     static let reset = Self(rawValue: "reset")
 }
 
-extension Reflog.Item.Kind: CustomStringConvertible {
+extension Reflog.Item.Action: CustomStringConvertible {
     var description: String { rawValue }
 }
 
-extension Reflog.Item.Kind: CaseIterable {
-    static var allCases: [Reflog.Item.Kind] {
+extension Reflog.Item.Action: CaseIterable {
+    static var allCases: [Reflog.Item.Action] {
         [
             .checkout,
             .cherrypick,
@@ -46,11 +46,11 @@ extension Reflog.Item.Kind: CaseIterable {
     }
 }
 
-extension Reflog.Item.Kind {
+extension Reflog.Item.Action {
     static var maxLength: Int { allCases.map(\.rawValue).map(\.count).reduce(0, max) }
 }
 
-extension Reflog.Item.Kind {
+extension Reflog.Item.Action {
 
     var foregroundColor: Color {
         switch self {

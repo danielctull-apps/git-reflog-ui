@@ -42,13 +42,13 @@ struct ItemView: View {
             ObjectIDView(item: item)
             VStack(alignment: .leading) {
                 Text(dateFormatter.string(from: item.committer.date))
-                Text(item.message.dropFirst(item.kind.trimAmount))
+                Text(item.message.dropFirst(item.action.trimAmount))
             }
             .padding(5)
             .font(.system(size: 17, weight: .regular, design: .default))
             Spacer(minLength: 0)
         }
-        .background(RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 4).foregroundColor(item.kind.backgroundColor))
+        .background(RoundedRectangle(cornerRadius: 8).stroke(lineWidth: 4).foregroundColor(item.action.backgroundColor))
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .lineLimit(1)
         .padding(.horizontal)
@@ -61,14 +61,14 @@ struct ObjectIDView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(item.kind.description)
-            Text(item.new.description.dropLast(40 - Reflog.Item.Kind.maxLength))
+            Text(item.action.description)
+            Text(item.new.description.dropLast(40 - Reflog.Item.Action.maxLength))
         }
         .font(.system(size: 17, weight: .regular, design: .monospaced))
         .padding(10)
         .frame(maxHeight: .infinity)
-        .background(item.kind.backgroundColor)
-        .foregroundColor(item.kind.foregroundColor)
+        .background(item.action.backgroundColor)
+        .foregroundColor(item.action.foregroundColor)
         .lineLimit(1)
     }
 }
