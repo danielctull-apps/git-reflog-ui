@@ -27,6 +27,7 @@ struct ReflogView: View {
             List(filteredItems) { item in
                 ReflogItemView(item: item)
             }
+            .id(filteredItems)
             Divider()
             Text("showing \(filteredItems.count) of \(reflog.count) reflog items")
                 .padding()
