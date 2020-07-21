@@ -1,14 +1,6 @@
 
-import Foundation
 import GitKit
 import SwiftUI
-
-let dateFormatter: DateFormatter = {
-    let df = DateFormatter()
-    df.timeStyle = .short
-    df.dateStyle = .long
-    return df
-}()
 
 struct ReflogView: View {
 
