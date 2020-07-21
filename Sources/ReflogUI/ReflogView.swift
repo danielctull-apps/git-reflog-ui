@@ -61,7 +61,7 @@ struct ObjectIDView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(item.kind.rawValue)
+            Text(item.kind.description)
             Text(item.new.description.dropLast(40 - Reflog.Item.Kind.maxLength))
         }
         .font(.system(size: 17, weight: .regular, design: .monospaced))
