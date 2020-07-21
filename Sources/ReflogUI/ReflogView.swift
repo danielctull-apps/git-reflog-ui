@@ -2,16 +2,32 @@
 import GitKit
 import SwiftUI
 
+func and<T>(_ predicate1: @escaping (T) -> Bool, _ predicate2: @escaping (T) -> Bool) -> (T) -> Bool {
+    {
+        if predicate1($0) { return predicate2($0) }
+        return false
+    }
+}
+
 struct ReflogView: View {
 
     let repository: Repository
     let reflog: [Reflog.Item]
 
     @State private var actions: [Reflog.Item.Action] = []
+    @State private var search = ""
 
     var filteredItems: [Reflog.Item] {
-        guard !actions.isEmpty else { return reflog }
-        return reflog.filter { actions.contains($0.action) }
+
+        let searchPredicate: (Reflog.Item) -> Bool = search.isEmpty
+            ? { _ in true }
+            : { $0.message.contains(search) }
+
+        let actionsPredicate: (Reflog.Item) -> Bool = actions.isEmpty
+            ? { _ in true }
+            : { actions.contains($0.action) }
+
+        return reflog.filter(and(actionsPredicate, searchPredicate))
     }
 
     init(repository: Repository) throws {
@@ -21,8 +37,11 @@ struct ReflogView: View {
 
     var body: some View {
         VStack(spacing: 0) {
+            TextField("Filter", text: $search)
+                .font(.system(size: 17, weight: .regular, design: .default))
+                .padding()
             ActionPicker(selection: $actions)
-                .padding(.vertical)
+                .padding(.bottom)
             Divider()
             List(filteredItems) { item in
                 ReflogItemView(item: item)
