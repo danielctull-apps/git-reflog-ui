@@ -51,7 +51,7 @@ extension Reflog.Item.Action: CaseIterable {
 }
 
 extension Reflog.Item.Action {
-    static var maxLength: Int { allCases.map(\.rawValue).map(\.count).reduce(0, max) }
+    static var maxLength: Int { allCases.map(\.description).map(\.count).reduce(0, max) }
 }
 
 extension Reflog.Item.Action {
