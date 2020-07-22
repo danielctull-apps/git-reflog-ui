@@ -1,4 +1,4 @@
-# ReflogUI (`git reflog-ui`)
+# `git reflog-ui`
 
 Makes it even easier to find your lost commits in the [`git reflog`](https://git-scm.com/docs/git-reflog).
 
@@ -6,21 +6,21 @@ Makes it even easier to find your lost commits in the [`git reflog`](https://git
 
 ## Installation
 
-ReflogUI requires `libgit2` to be installed using homebrew before building.
+git-reflog-ui requires `libgit2` to be installed using homebrew before building.
 
 ```sh
 brew install libgit2
 ```
 
-I recommend using the awesome utility [Mint](https://github.com/yonaskolb/Mint) to install ReflogUI.
+I recommend using the awesome utility [Mint](https://github.com/yonaskolb/Mint) for installation.
 
 ```sh
-mint install danielctull-apps/ReflogUI
+mint install danielctull-apps/git-reflog-ui
 ```
 
 ## Usage
 
-ReflogUI can only be run from the command line and is invoked as per git's own reflog viewer with the suffix of `-ui`:
+git reflog-ui can only be run from the command line and is invoked as per git's own reflog viewer with the suffix of `-ui`:
 
 ```sh
 git reflog-ui
@@ -32,3 +32,4 @@ There's code in this little app that takes heavy inspiration from the following.
 
 * [Chris Eidhof](https://github.com/chriseidhof) for his [boilerplate.swift](https://gist.github.com/chriseidhof/26768f0b63fa3cdf8b46821e099df5ff) gist which shows all the configuration needed to get a macOS app running from the command line.
 * [Matt Gallagher](https://twitter.com/cocoawithlove) for his blog post [Minimalist Cocoa programming](https://www.cocoawithlove.com/2010/09/minimalist-cocoa-programming.html) which was useful background information to Chris' boilerplate gist.
+
