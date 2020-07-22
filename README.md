@@ -20,7 +20,7 @@ mint install danielctull-apps/git-reflog-ui
 
 ## Usage
 
-git reflog-ui can only be run from the command line and is invoked as per git's own reflog viewer with the suffix of `-ui`:
+git reflog-ui can only be run from the command line. When inside your working directory running the following will pop open the floating window.
 
 ```sh
 git reflog-ui
