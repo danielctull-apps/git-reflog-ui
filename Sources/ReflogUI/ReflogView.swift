@@ -2,13 +2,6 @@
 import GitKit
 import SwiftUI
 
-func and<T>(_ predicate1: @escaping (T) -> Bool, _ predicate2: @escaping (T) -> Bool) -> (T) -> Bool {
-    {
-        if predicate1($0) { return predicate2($0) }
-        return false
-    }
-}
-
 struct ReflogView: View {
 
     let repository: Repository
@@ -19,15 +12,17 @@ struct ReflogView: View {
 
     var filteredItems: [Reflog.Item] {
 
-        let searchPredicate: (Reflog.Item) -> Bool = search.isEmpty
-            ? { _ in true }
-            : { $0.message.contains(search) }
+        var filteredItems = reflog
 
-        let actionsPredicate: (Reflog.Item) -> Bool = actions.isEmpty
-            ? { _ in true }
-            : { actions.contains($0.action) }
+        if !search.isEmpty {
+            filteredItems = filteredItems.filter { $0.message.contains(search) }
+        }
 
-        return reflog.filter(and(actionsPredicate, searchPredicate))
+        if !actions.isEmpty {
+            filteredItems = filteredItems.filter { actions.contains($0.action) }
+        }
+
+        return filteredItems
     }
 
     init(repository: Repository) throws {
