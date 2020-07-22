@@ -8,7 +8,7 @@ let package = Package(
         .macOS(.v10_15),
     ],
     products: [
-        .executable(name: "reflogui", targets: ["ReflogUI"]),
+        .executable(name: "git-reflog-ui", targets: ["ReflogUI"]),
     ],
     dependencies: [
         .package(name: "GitKit",
