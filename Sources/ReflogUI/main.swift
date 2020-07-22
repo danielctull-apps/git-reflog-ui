@@ -19,4 +19,5 @@ let delegate = AppDelegate {
     .frame(maxWidth: .infinity, maxHeight: .infinity)
 }
 app.delegate = delegate
+app.menu = .reflogUI
 app.run()
