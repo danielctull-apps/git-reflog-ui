@@ -68,8 +68,10 @@ struct ActionPicker: View {
             HStack {
                 Space(length: 0)
                 ForEach(Reflog.Item.Action.allCases) { action in
-                    ActionView(action: action, selected: selection.contains(action))
-                        .onTapGesture { toggle(action) }
+                    Button(action.description, action: { toggle(action) })
+                        .buttonStyle(ActionButtonStyle(selected: selection.contains(action),
+                                                       foreground: action.foregroundColor,
+                                                       background: action.backgroundColor))
                 }
                 Space(length: 0)
             }
@@ -84,23 +86,24 @@ struct Space: View {
     }
 }
 
-struct ActionView: View {
+struct ActionButtonStyle: ButtonStyle {
 
-    let action: Reflog.Item.Action
     let selected: Bool
+    let foreground: Color
+    let background: Color
 
     @ViewBuilder
-    var body: some View {
+    func makeBody(configuration: Configuration) -> some View {
         if selected {
-            Text(action.description)
+            configuration.label
                 .padding(8)
-                .background(RoundedRectangle(cornerRadius: 8).fill(action.backgroundColor))
-                .foregroundColor(action.foregroundColor)
+                .background(RoundedRectangle(cornerRadius: 8).fill(background))
+                .foregroundColor(foreground)
                 .font(.system(size: 17, weight: .regular, design: .monospaced))
         } else {
-            Text(action.description)
+            configuration.label
                 .padding(8)
-                .background(RoundedRectangle(cornerRadius: 8).strokeBorder(action.backgroundColor, lineWidth: 2))
+                .background(RoundedRectangle(cornerRadius: 8).strokeBorder(background, lineWidth: 2))
                 .font(.system(size: 17, weight: .regular, design: .monospaced))
         }
     }
