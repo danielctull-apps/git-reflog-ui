@@ -1,4 +1,5 @@
 
+import AppKit
 import GitKit
 import SwiftUI
 
@@ -30,6 +31,12 @@ struct ReflogView: View {
         self.reflog = try repository.reflog().items()
     }
 
+    func copy(_ item: Reflog.Item) {
+        let pasteboard = NSPasteboard.general
+        pasteboard.declareTypes([.string], owner: nil)
+        pasteboard.setString(item.new.description, forType: .string)
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             TextField("Filter", text: $search)
@@ -39,13 +46,24 @@ struct ReflogView: View {
                 .padding(.bottom)
             Divider()
             List(filteredItems) { item in
-                ReflogItemView(item: item)
+                Button(action: { copy(item) }) {
+                    ReflogItemView(item: item)
+                }
             }
+            .buttonStyle(OpacityButtonStyle())
             .id(filteredItems)
             Divider()
             Text("showing \(filteredItems.count) of \(reflog.count) reflog items")
                 .padding()
         }
+    }
+}
+
+struct OpacityButtonStyle: ButtonStyle {
+
+    @ViewBuilder
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.opacity(configuration.isPressed ? 0.7 : 1)
     }
 }
 
