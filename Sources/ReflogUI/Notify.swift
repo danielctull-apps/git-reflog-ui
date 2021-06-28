@@ -1,43 +1,32 @@
 
 import SwiftUI
 
-struct Notification2 {
-    let icon: Image
-    let title: Text
-}
-
-extension Notification2 {
-    init(title: String, systemName: String) {
-        self.init(icon: Image(systemName: systemName), title: Text(title))
-    }
-}
-
 extension View {
 
-    func notify<Item>(
+    func notify<Item, Title: View, Icon: View>(
         with item: Binding<Item?>,
         duration: Double = 0.5,
-        notification: @escaping (Item) -> Notification2
+        label: @escaping (Item) -> Label<Title, Icon>
     ) -> some View {
         modifier(
-            NotificationModifier<Item>(
+            NotificationModifier<Item, Title, Icon>(
                 item: item,
                 duration: duration,
-                notification: notification
+                label: label
             )
         )
     }
 }
 
-fileprivate struct NotificationModifier<Item> {
+fileprivate struct NotificationModifier<Item, Title: View, Icon: View> {
     let item: Binding<Item?>
-    let duration: Double
-    let notification: (Item) -> Notification2
+    let duration: TimeInterval
+    let label: (Item) -> Label<Title, Icon>
 }
 
 extension NotificationModifier: ViewModifier {
 
-    func countdown() {
+    private func countdown() {
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             item.wrappedValue = nil
         }
@@ -47,28 +36,21 @@ extension NotificationModifier: ViewModifier {
     func body(content: Content) -> some View {
         if let item = item.wrappedValue {
             content
-                .overlay(NotificationView(notification: notification(item)))
+                .overlay(overlay(for: item))
                 .onAppear(perform: countdown)
         } else {
             content
         }
     }
-}
 
-struct NotificationView: View {
-    let notification: Notification2
-    
-    var body: some View {
-
-        HStack {
-            notification.icon
-            notification.title
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .padding(5)
-        .foregroundColor(.white)
-        .background(RoundedRectangle(cornerRadius: 25).fill(Color.black))
-        .padding()
-        .transition(.opacity)
+    @ViewBuilder
+    private func overlay(for item: Item) -> some View {
+        label(item)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .padding(5)
+            .foregroundColor(.white)
+            .background(RoundedRectangle(cornerRadius: 25).fill(Color.black))
+            .padding()
+            .transition(.opacity)
     }
 }

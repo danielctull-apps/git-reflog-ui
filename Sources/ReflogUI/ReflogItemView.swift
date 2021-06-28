@@ -12,8 +12,8 @@ struct ReflogItemView: View {
         HStack {
             Button(action: { copyItem = item }) {
                 ObjectIDView(item: item)
-                    .notify(with: $copyItem) { item in
-                        Notification2(title: "Copied", systemName: "doc.on.clipboard.fill")
+                    .notify(with: $copyItem) { _ in
+                        Label("Copied", systemImage: "doc.on.clipboard.fill")
                     }
             }
             VStack(alignment: .leading) {
