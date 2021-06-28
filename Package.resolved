@@ -3,16 +3,16 @@
     "pins": [
       {
         "package": "GitKit",
-        "repositoryURL": "https://github.com/danielctull/GitKit",
+        "repositoryURL": "https://github.com/danielctull/GitKit.git",
         "state": {
           "branch": "main",
-          "revision": "28804810fe22fcaa37a1e98646966a0f392ce8fb",
+          "revision": "1801981b86f90caf90d75c4632094195c51c9a08",
           "version": null
         }
       },
       {
         "package": "swift-tagged",
-        "repositoryURL": "https://github.com/pointfreeco/swift-tagged",
+        "repositoryURL": "https://github.com/pointfreeco/swift-tagged.git",
         "state": {
           "branch": null,
           "revision": "6c36cf66f58553d0481a2628e3e27177f698a897",

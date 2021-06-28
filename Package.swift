@@ -11,9 +11,7 @@ let package = Package(
         .executable(name: "git-reflog-ui", targets: ["ReflogUI"]),
     ],
     dependencies: [
-        .package(name: "GitKit",
-                 url: "https://github.com/danielctull/GitKit",
-                 .branch("main")),
+        .package(url: "https://github.com/danielctull/GitKit.git", .branch("main")),
     ],
     targets: [
         .executableTarget(
