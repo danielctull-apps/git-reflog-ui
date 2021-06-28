@@ -31,12 +31,6 @@ struct ReflogView: View {
         self.reflog = try repository.reflog().items()
     }
 
-    func copy(_ item: Reflog.Item) {
-        let pasteboard = NSPasteboard.general
-        pasteboard.declareTypes([.string], owner: nil)
-        pasteboard.setString(item.new.description, forType: .string)
-    }
-
     var body: some View {
         VStack(spacing: 0) {
             TextField("Filter", text: $search)
@@ -46,9 +40,7 @@ struct ReflogView: View {
                 .padding(.bottom)
             Divider()
             List(filteredItems) { item in
-                Button(action: { copy(item) }) {
-                    ReflogItemView(item: item)
-                }
+                ReflogItemView(item: item)
             }
             .buttonStyle(OpacityButtonStyle())
             .id(filteredItems)
@@ -56,6 +48,15 @@ struct ReflogView: View {
             Text("showing \(filteredItems.count) of \(reflog.count) reflog items")
                 .padding()
         }
+    }
+}
+
+extension NSPasteboard {
+
+    func copy(_ item: Reflog.Item?) {
+        guard let item = item else { return }
+        declareTypes([.string], owner: nil)
+        setString(item.new.description, forType: .string)
     }
 }
 

@@ -5,10 +5,17 @@ import SwiftUI
 struct ReflogItemView: View {
 
     let item: Reflog.Item
+    @State private var copyItem: Reflog.Item?
 
     var body: some View {
+
         HStack {
-            ObjectIDView(item: item)
+            Button(action: { copyItem = item }) {
+                ObjectIDView(item: item)
+                    .notify(with: $copyItem) { item in
+                        Notification2(title: "Copied", systemName: "doc.on.clipboard.fill")
+                    }
+            }
             VStack(alignment: .leading) {
                 Text(dateFormatter.string(from: item.committer.date))
                 Text(item.message.dropFirst(item.action.trimAmount))
@@ -20,6 +27,7 @@ struct ReflogItemView: View {
         .background(RoundedRectangle(cornerRadius: 8).strokeBorder(item.action.backgroundColor, lineWidth: 2))
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .lineLimit(1)
+        .onChange(of: copyItem, perform: NSPasteboard.general.copy)
     }
 }
 
