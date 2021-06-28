@@ -16,7 +16,7 @@ let package = Package(
                  .branch("main")),
     ],
     targets: [
-        .target(
+        .executableTarget(
             name: "ReflogUI",
             dependencies: ["GitKit"]),
     ]
