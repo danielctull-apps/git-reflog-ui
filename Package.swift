@@ -1,11 +1,11 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.4
 
 import PackageDescription
 
 let package = Package(
     name: "ReflogUI",
     platforms: [
-        .macOS(.v10_15),
+        .macOS(.v11),
     ],
     products: [
         .executable(name: "git-reflog-ui", targets: ["ReflogUI"]),
