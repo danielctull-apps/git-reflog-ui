@@ -28,7 +28,7 @@ struct ReflogView: View {
 
     init(repository: Repository) throws {
         self.repository = repository
-        self.reflog = try repository.reflog().items()
+        self.reflog = try repository.reflog.items
     }
 
     var body: some View {
