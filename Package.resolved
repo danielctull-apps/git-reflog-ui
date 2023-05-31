@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "gitkit",
+      "identity" : "asyncview",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/danielctull/GitKit",
+      "location" : "https://github.com/danielctull/AsyncView",
       "state" : {
-        "branch" : "swift-concurrency/global-actor-4",
-        "revision" : "d3819eac2822fc7ed63032c27ded5c52ccfa72bb"
+        "branch" : "main",
+        "revision" : "fad1abeb501f384fefecbac33a4e27bc337a995f"
       }
     },
     {

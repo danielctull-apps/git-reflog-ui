@@ -1,26 +1,25 @@
 
 import AppKit
+import AsyncView
 import Git
 import SwiftUI
 
 @main
 struct ReflogUI {
 
-    static func main() async throws {
+    static func main() {
 
         let app = NSApplication.shared
         NSApp.setActivationPolicy(.accessory)
-        guard let url = Process().currentDirectoryURL else {
-            struct CannotFindCurrentDirectoryURL: Error {}
-            throw CannotFindCurrentDirectoryURL()
-        }
-        let repository = try await Repository(url: url)
-        let reflog = try await repository.reflog.items
+
         let delegate = AppDelegate {
             ZStack {
                 Color.white
                     .edgesIgnoringSafeArea(.all)
-                ReflogView(repository: repository, reflog: reflog)
+                AsyncView(
+                    task: fetchReflog,
+                    success: ReflogView.init,
+                    failure: ErrorView.init)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
@@ -28,4 +27,16 @@ struct ReflogUI {
         app.menu = .reflogUI
         app.run()
     }
+}
+
+func fetchReflog() async throws -> (Repository, [Reflog.Item]) {
+
+    guard let url = Process().currentDirectoryURL else {
+        struct CannotFindCurrentDirectoryURL: Error {}
+        throw CannotFindCurrentDirectoryURL()
+    }
+
+    let repository = try await Repository(url: url)
+    let reflog = try await repository.reflog.items
+    return (repository, reflog)
 }
