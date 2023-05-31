@@ -1,6 +1,6 @@
 
 import AppKit
-import GitKit
+import Git
 import SwiftUI
 
 struct ReflogView: View {

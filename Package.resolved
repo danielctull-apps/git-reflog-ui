@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/danielctull/GitKit.git",
         "state": {
           "branch": "main",
-          "revision": "01f38bc684a860d47c78a4b680d48f2c0506d05b",
+          "revision": "d6a9288e878cb58fbfe1eec89d94bf1a01664621",
           "version": null
         }
       },
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-tagged.git",
         "state": {
           "branch": null,
-          "revision": "6c36cf66f58553d0481a2628e3e27177f698a897",
-          "version": "0.6.0"
+          "revision": "3907a9438f5b57d317001dc99f3f11b46882272b",
+          "version": "0.10.0"
         }
       }
     ]
