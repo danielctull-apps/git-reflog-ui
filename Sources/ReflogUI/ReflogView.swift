@@ -26,9 +26,9 @@ struct ReflogView: View {
         return filteredItems
     }
 
-    init(repository: Repository) throws {
+    init(repository: Repository, reflog: [Reflog.Item]) {
         self.repository = repository
-        self.reflog = try repository.reflog.items
+        self.reflog = reflog
     }
 
     var body: some View {

@@ -6,7 +6,7 @@ import SwiftUI
 @main
 struct ReflogUI {
 
-    static func main() throws {
+    static func main() async throws {
 
         let app = NSApplication.shared
         NSApp.setActivationPolicy(.accessory)
@@ -14,12 +14,13 @@ struct ReflogUI {
             struct CannotFindCurrentDirectoryURL: Error {}
             throw CannotFindCurrentDirectoryURL()
         }
-        let repository = try Repository(url: url)
+        let repository = try await Repository(url: url)
+        let reflog = try await repository.reflog.items
         let delegate = AppDelegate {
             ZStack {
                 Color.white
                     .edgesIgnoringSafeArea(.all)
-                try! ReflogView(repository: repository)
+                ReflogView(repository: repository, reflog: reflog)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
