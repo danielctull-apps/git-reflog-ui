@@ -1,4 +1,4 @@
-// swift-tools-version:5.4
+// swift-tools-version: 6.0
 
 import PackageDescription
 
@@ -11,7 +11,7 @@ let package = Package(
     .executable(name: "git-reflog-ui", targets: ["ReflogUI"])
   ],
   dependencies: [
-    .package(url: "https://github.com/danielctull/GitKit.git", .branch("main"))
+    .package(url: "https://github.com/danielctull/GitKit.git", branch: "main")
   ],
   targets: [
     .executableTarget(
