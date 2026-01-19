@@ -1,25 +1,24 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "GitKit",
-        "repositoryURL": "https://github.com/danielctull/GitKit.git",
-        "state": {
-          "branch": "main",
-          "revision": "01f38bc684a860d47c78a4b680d48f2c0506d05b",
-          "version": null
-        }
-      },
-      {
-        "package": "swift-tagged",
-        "repositoryURL": "https://github.com/pointfreeco/swift-tagged.git",
-        "state": {
-          "branch": null,
-          "revision": "6c36cf66f58553d0481a2628e3e27177f698a897",
-          "version": "0.6.0"
-        }
+  "originHash" : "f9c7bb3f0fff434aba2f5f81952423b6f35cd3bee7b14daf98da18e032d58cd4",
+  "pins" : [
+    {
+      "identity" : "swift-git",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielctull/swift-git.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d758416efdcdb4f903ed3226461b81494c96576f"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "swift-libgit2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielctull-forks/swift-libgit2.git",
+      "state" : {
+        "revision" : "c1e2dd030637ad30c39a76195d6b72d050c448dc",
+        "version" : "1.9.2"
+      }
+    }
+  ],
+  "version" : 3
 }

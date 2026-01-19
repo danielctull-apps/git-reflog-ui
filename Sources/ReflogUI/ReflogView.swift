@@ -1,5 +1,5 @@
 import AppKit
-import GitKit
+import Git
 import SwiftUI
 
 struct ReflogView: View {
@@ -27,7 +27,7 @@ struct ReflogView: View {
 
   init(repository: Repository) throws {
     self.repository = repository
-    self.reflog = try repository.reflog.items
+    self.reflog = try Array(repository.reflog.items)
   }
 
   var body: some View {

@@ -17,7 +17,8 @@ extension View {
   }
 }
 
-private struct NotificationModifier<Item, Title: View, Icon: View>: ViewModifier {
+private struct NotificationModifier<Item, Title: View, Icon: View>: ViewModifier
+{
   let item: Binding<Item?>
   let duration: TimeInterval
   let label: (Item) -> Label<Title, Icon>

@@ -1,4 +1,4 @@
-import GitKit
+import Git
 import SwiftUI
 
 struct ReflogItemView: View {

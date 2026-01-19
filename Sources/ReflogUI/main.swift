@@ -1,5 +1,5 @@
 import AppKit
-import GitKit
+import Git
 import SwiftUI
 
 let app = NSApplication.shared
